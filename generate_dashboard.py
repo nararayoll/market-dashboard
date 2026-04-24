@@ -72,6 +72,11 @@ def build_dashboard():
     print("포트폴리오 히스토리 수집 중...")
     port_history = fetch_portfolio_history()
 
+    # 공유용: 개인 정보 필드 제거
+    PRIVATE_FIELDS = ('avg_price', 'qty', 'pnl_pct', 'pnl_abs')
+    portfolio_results = [{k: v for k, v in r.items() if k not in PRIVATE_FIELDS} for r in portfolio_results]
+    port_history = {t: {k: v for k, v in d.items() if k != 'avg_price'} for t, d in port_history.items()}
+
     all_tickers = [t for group in TICKER_GROUPS.values() for t in group]
 
     cards = []
@@ -188,8 +193,7 @@ def build_dashboard():
     .port-charts {{ grid-template-columns: 1fr; gap: 12px; }}
     .news-grid  {{ grid-template-columns: 1fr; }}
     .section-title {{ margin: 20px 0 10px; font-size: 0.92rem; }}
-    .port-table th:nth-child(4), .port-table td:nth-child(4),
-    .port-table th:nth-child(7), .port-table td:nth-child(7) {{ display: none; }}
+    .port-table th:nth-child(4), .port-table td:nth-child(4) {{ display: none; }}
     .port-table {{ font-size: 0.75rem; }}
     .port-table th, .port-table td {{ padding: 7px 6px; }}
     .badge {{ padding: 1px 5px; font-size: 0.68rem; }}
@@ -214,8 +218,6 @@ def build_dashboard():
       <th>종목</th>
       <th>현재가</th>
       <th>전일대비</th>
-      <th>매입가</th>
-      <th>수익률</th>
       <th>RSI <span style="font-weight:400;color:#555">(Relative Strength Index)</span></th>
       <th>MA20 vs MA60</th>
       <th>시그널</th>
@@ -371,7 +373,6 @@ Object.entries(portHistory).forEach(([ticker, d]) => {{
     <canvas id="${{canvasId}}" height="110"></canvas>`;
   portChartsEl.appendChild(box);
   const ctx = document.getElementById(canvasId).getContext('2d');
-  const avgLine = d.dates.map(() => d.avg_price);
   new Chart(ctx, {{
     type: 'line',
     data: {{
@@ -383,8 +384,6 @@ Object.entries(portHistory).forEach(([ticker, d]) => {{
            pointRadius: 0, fill: false, tension: 0.2, spanGaps: true, borderDash: [4,2], order: 2 }},
         {{ label: 'MA60', data: d.ma60, borderColor: '#ce93d8', borderWidth: 1.5,
            pointRadius: 0, fill: false, tension: 0.2, spanGaps: true, borderDash: [4,2], order: 3 }},
-        {{ label: '매입가', data: avgLine, borderColor: '#ffffff44', borderWidth: 1,
-           pointRadius: 0, fill: false, tension: 0, spanGaps: true, borderDash: [6,3], order: 4 }},
       ]
     }},
     options: {{
@@ -416,9 +415,7 @@ if (portSignals.length === 0) {{
 
 const tbody = document.getElementById('port-tbody');
 portfolio.forEach(r => {{
-  const pnlCls  = r.pnl_pct  >= 0 ? 'up' : 'down';
-  const dayCls  = r.day_chg  >= 0 ? 'up' : 'down';
-  const pnlArrow = r.pnl_pct >= 0 ? '▲' : '▼';
+  const dayCls  = r.day_chg >= 0 ? 'up' : 'down';
   const dayArrow = r.day_chg >= 0 ? '▲' : '▼';
   const cur = r.currency === 'KRW' ? '₩' : '$';
   let rsiBadge = '';
@@ -440,8 +437,6 @@ portfolio.forEach(r => {{
       <td>${{r.name}} <span style="color:#555;font-size:.72rem">${{r.ticker}}</span></td>
       <td>${{cur}}${{r.current_price.toLocaleString()}}</td>
       <td class="${{dayCls}}">${{dayArrow}} ${{Math.abs(r.day_chg).toFixed(2)}}%</td>
-      <td style="color:#666">${{cur}}${{r.avg_price.toLocaleString()}}</td>
-      <td class="${{pnlCls}}">${{pnlArrow}} ${{Math.abs(r.pnl_pct).toFixed(2)}}%</td>
       <td>${{r.rsi}} ${{rsiBadge}}</td>
       <td>${{maStatus}} ${{maBadge}}</td>
       <td>${{sigCell}}</td>
