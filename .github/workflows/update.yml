@@ -32,12 +32,14 @@ jobs:
 
       - name: Run generate_dashboard
         run: python generate_dashboard.py
+        env:
+          DASHBOARD_PASSWORD: ${{ secrets.DASHBOARD_PASSWORD }}
 
       - name: Commit and push
         run: |
           git config user.email "nararayoll@gmail.com"
           git config user.name "nararayoll"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/nararayoll/market-dashboard.git
-          git add index.html market_data.csv
+          git add index.html private.html market_data.csv
           git diff --staged --quiet || git commit -m "Update dashboard $(date +%Y-%m-%d)"
           git push
