@@ -171,18 +171,19 @@ if (sessionStorage.getItem('dash_auth') === '1') document.getElementById('pw-ove
         password_overlay = ""
 
     # 포트폴리오 테이블 헤더/행 (개인용은 매입가·수익률 포함)
+    # 주의: table_row 는 일반 문자열 → JS 템플릿 리터럴에 넣으므로 단일 중괄호 사용
     if public:
         table_header = """
       <th>종목</th><th>현재가</th><th>전일대비</th>
       <th>RSI <span style="font-weight:400;color:#555">(Relative Strength Index)</span></th>
       <th>MA20 vs MA60</th><th>시그널</th>"""
         table_row = """
-      <td>${{r.name}} <span style="color:#555;font-size:.72rem">${{r.ticker}}</span></td>
-      <td>${{cur}}${{r.current_price.toLocaleString()}}</td>
-      <td class="${{dayCls}}">${{dayArrow}} ${{Math.abs(r.day_chg).toFixed(2)}}%</td>
-      <td>${{r.rsi}} ${{rsiBadge}}</td>
-      <td>${{maStatus}} ${{maBadge}}</td>
-      <td>${{sigCell}}</td>"""
+      <td>${r.name} <span style="color:#555;font-size:.72rem">${r.ticker}</span></td>
+      <td>${cur}${r.current_price.toLocaleString()}</td>
+      <td class="${dayCls}">${dayArrow} ${Math.abs(r.day_chg).toFixed(2)}%</td>
+      <td>${r.rsi} ${rsiBadge}</td>
+      <td>${maStatus} ${maBadge}</td>
+      <td>${sigCell}</td>"""
         pnl_vars = ""
         mobile_hide = ".port-table th:nth-child(4), .port-table td:nth-child(4) { display: none; }"
     else:
@@ -191,33 +192,33 @@ if (sessionStorage.getItem('dash_auth') === '1') document.getElementById('pw-ove
       <th>RSI <span style="font-weight:400;color:#555">(Relative Strength Index)</span></th>
       <th>MA20 vs MA60</th><th>시그널</th>"""
         table_row = """
-      <td>${{r.name}} <span style="color:#555;font-size:.72rem">${{r.ticker}}</span></td>
-      <td>${{cur}}${{r.current_price.toLocaleString()}}</td>
-      <td class="${{dayCls}}">${{dayArrow}} ${{Math.abs(r.day_chg).toFixed(2)}}%</td>
-      <td style="color:#666">${{cur}}${{r.avg_price.toLocaleString()}}</td>
-      <td class="${{pnlCls}}">${{pnlArrow}} ${{Math.abs(r.pnl_pct).toFixed(2)}}%</td>
-      <td>${{r.rsi}} ${{rsiBadge}}</td>
-      <td>${{maStatus}} ${{maBadge}}</td>
-      <td>${{sigCell}}</td>"""
+      <td>${r.name} <span style="color:#555;font-size:.72rem">${r.ticker}</span></td>
+      <td>${cur}${r.current_price.toLocaleString()}</td>
+      <td class="${dayCls}">${dayArrow} ${Math.abs(r.day_chg).toFixed(2)}%</td>
+      <td style="color:#666">${cur}${r.avg_price.toLocaleString()}</td>
+      <td class="${pnlCls}">${pnlArrow} ${Math.abs(r.pnl_pct).toFixed(2)}%</td>
+      <td>${r.rsi} ${rsiBadge}</td>
+      <td>${maStatus} ${maBadge}</td>
+      <td>${sigCell}</td>"""
         pnl_vars = """
   const pnlCls   = r.pnl_pct >= 0 ? 'up' : 'down';
   const pnlArrow = r.pnl_pct >= 0 ? '▲' : '▼';"""
         mobile_hide = """.port-table th:nth-child(4), .port-table td:nth-child(4),
-    .port-table th:nth-child(7), .port-table td:nth-child(7) {{ display: none; }}"""
+    .port-table th:nth-child(7), .port-table td:nth-child(7) { display: none; }"""
 
-    # 종목 차트 매입가 라인 (개인용만)
+    # 종목 차트 매입가 라인 (개인용만, 일반 문자열이므로 단일 중괄호)
     if public:
         avg_line_dataset = ""
     else:
         avg_line_dataset = """
-        {{ label: '매입가', data: d.dates.map(() => d.avg_price), borderColor: '#ffffff44', borderWidth: 1,
-           pointRadius: 0, fill: false, tension: 0, spanGaps: true, borderDash: [6,3], order: 4 }},"""
+        { label: '매입가', data: d.dates.map(() => d.avg_price), borderColor: '#ffffff44', borderWidth: 1,
+          pointRadius: 0, fill: false, tension: 0, spanGaps: true, borderDash: [6,3], order: 4 },"""
 
-    # 종목 차트 subtitle
+    # 종목 차트 subtitle (일반 문자열이므로 JS 템플릿 표현식은 단일 중괄호)
     if public:
         chart_sub = "종가 · MA20 · MA60"
     else:
-        chart_sub = "종가 · MA20 · MA60 · 매입가 ${{cur}}${{d.avg_price.toLocaleString()}}"
+        chart_sub = "종가 · MA20 · MA60 · 매입가 ${cur}${d.avg_price.toLocaleString()}"
 
     html = f"""<!DOCTYPE html>
 <html lang="ko">
