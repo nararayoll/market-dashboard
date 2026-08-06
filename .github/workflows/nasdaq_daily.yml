@@ -1,0 +1,36 @@
+name: NASDAQ Daily Report
+
+on:
+  schedule:
+    - cron: '0 22 * * *'  # 07:00 KST daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install yfinance requests
+
+      - name: Generate NASDAQ report
+        run: python nasdaq_daily_report.py
+
+      - name: Commit and push
+        run: |
+          git config user.email "nararayoll@gmail.com"
+          git config user.name "Nasdaq Daily Bot"
+          git add nasdaq_daily.html
+          git diff --staged --quiet || git commit -m "Update NASDAQ daily report $(date +%Y-%m-%d)"
+          git push
