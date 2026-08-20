@@ -10,7 +10,7 @@
   .header { background: #1a6fe8; color: #fff; padding: 20px 16px 18px; }
   .header-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
   .header-price { font-size: 38px; font-weight: 700; letter-spacing: -1px; }
-  .header-change { font-size: 15px; margin-top: 4px; color: #e44b4b; background: #fff; display: inline-block; padding: 3px 10px; border-radius: 6px; font-weight: 700; }
+  .header-change { font-size: 15px; margin-top: 4px; color: #4b7be4; background: #fff; display: inline-block; padding: 3px 10px; border-radius: 6px; font-weight: 700; }
   .section { background: #fff; margin: 10px 12px; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
   .section-title { font-size: 13px; color: #888; padding: 12px 14px 4px; font-weight: 600; }
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
@@ -27,9 +27,9 @@
   .card-value { font-size: 15px; font-weight: 700; }
   .week52-wrap { padding: 14px 14px 16px; }
   .week52-bar-bg { background: #e8e8e8; border-radius: 4px; height: 8px; margin: 8px 0; position: relative; }
-  .week52-bar-fill { background: #1a6fe8; height: 8px; border-radius: 4px; width: 86.8%; }
+  .week52-bar-fill { background: #1a6fe8; height: 8px; border-radius: 4px; width: 82.7%; }
   .week52-labels { display: flex; justify-content: space-between; font-size: 11px; color: #888; }
-  .week52-current { position: absolute; top: -20px; left: 86.8%; transform: translateX(-50%); font-size: 11px; color: #1a6fe8; font-weight: 700; white-space: nowrap; }
+  .week52-current { position: absolute; top: -20px; left: 82.7%; transform: translateX(-50%); font-size: 11px; color: #1a6fe8; font-weight: 700; white-space: nowrap; }
   .reason-card { display: flex; align-items: flex-start; gap: 10px; padding: 11px 14px; border-bottom: 1px solid #f0f0f0; }
   .reason-card:last-child { border-bottom: none; }
   .reason-num { background: #1a6fe8; color: #fff; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
@@ -41,8 +41,8 @@
 
 <div class="header">
   <div class="header-title">나스닥 종합</div>
-  <div class="header-price">26,331.09</div>
-  <div class="header-change">▲ 41.38 (+0.16%)</div>
+  <div class="header-price">26,067.17</div>
+  <div class="header-change">▼ 263.92 (-1.0%)</div>
 </div>
 
 <div class="section">
@@ -57,6 +57,12 @@
       </tr>
     </thead>
     <tbody>
+        <tr>
+          <td>08.20</td>
+          <td><strong>26,067.17</strong></td>
+          <td style="color:#4b7be4">-263.92</td>
+          <td><span style="background:#4b7be4;color:#fff;padding:3px 10px;border-radius:5px;font-size:13px;font-weight:700">-1.0%</span></td>
+        </tr>
         <tr>
           <td>08.19</td>
           <td><strong>26,331.09</strong></td>
@@ -110,12 +116,6 @@
           <td><strong>26,690.62</strong></td>
           <td style="color:#e44b4b">+342.27</td>
           <td><span style="background:#e44b4b;color:#fff;padding:3px 10px;border-radius:5px;font-size:13px;font-weight:700">+1.3%</span></td>
-        </tr>
-        <tr>
-          <td>08.06</td>
-          <td><strong>26,348.35</strong></td>
-          <td style="color:#4b7be4">-15.09</td>
-          <td><span style="background:#4b7be4;color:#fff;padding:3px 10px;border-radius:5px;font-size:13px;font-weight:700">-0.06%</span></td>
         </tr></tbody>
   </table>
 </div>
@@ -123,16 +123,16 @@
 <div class="section">
   <div class="section-title">주요 지표</div>
   <div class="cards">
-    <div class="card"><div class="card-label">전일종가</div><div class="card-value">26,289.71</div></div>
-    <div class="card"><div class="card-label">시가</div><div class="card-value">26,393.89</div></div>
-    <div class="card"><div class="card-label">고가</div><div class="card-value" style="color:#e44b4b">26,456.78</div></div>
-    <div class="card"><div class="card-label">저가</div><div class="card-value" style="color:#4b7be4">26,185.13</div></div>
+    <div class="card"><div class="card-label">전일종가</div><div class="card-value">26,331.09</div></div>
+    <div class="card"><div class="card-label">시가</div><div class="card-value">26,211.52</div></div>
+    <div class="card"><div class="card-label">고가</div><div class="card-value" style="color:#e44b4b">26,263.47</div></div>
+    <div class="card"><div class="card-label">저가</div><div class="card-value" style="color:#4b7be4">26,023.12</div></div>
   </div>
   <div class="week52-wrap">
     <div class="card-label">52주 범위</div>
     <div class="week52-bar-bg">
       <div class="week52-bar-fill"></div>
-      <div class="week52-current">26,331</div>
+      <div class="week52-current">26,067</div>
     </div>
     <div class="week52-labels">
       <span>최저 20,690.25</span>
@@ -146,19 +146,19 @@
   
         <div class="reason-card">
           <span class="reason-num">1</span>
-          <span class="reason-text">Tech sell-off resumes, counterbalancing bond yield relief: AlphaCheck</span>
+          <span class="reason-text">Tech stocks today: Anthropic's IPO plans come into focus, Nvidia earni</span>
         </div>
         <div class="reason-card">
           <span class="reason-num">2</span>
-          <span class="reason-text">Stock Market Today, Aug. 19: Stocks Edge Higher, Ending 3-Day Losing S</span>
+          <span class="reason-text">Stock Market Today, Aug. 20: Stocks Slide on Weak Retail Earnings, Ris</span>
         </div>
         <div class="reason-card">
           <span class="reason-num">3</span>
-          <span class="reason-text">Stock Market Today, Aug. 19: Moderna Skyrockets 177% on Positive Phase</span>
+          <span class="reason-text">Dow Jones Futures: Market Triggers This Bearish Signal As Walmart, Spa</span>
         </div>
 </div>
 
-<div class="updated">업데이트: 2026.08.20 07:13 KST</div>
+<div class="updated">업데이트: 2026.08.21 07:14 KST</div>
 
 </body>
 </html>
