@@ -10,7 +10,7 @@
   .header { background: #1a6fe8; color: #fff; padding: 20px 16px 18px; }
   .header-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
   .header-price { font-size: 38px; font-weight: 700; letter-spacing: -1px; }
-  .header-change { font-size: 15px; margin-top: 4px; color: #e44b4b; background: #fff; display: inline-block; padding: 3px 10px; border-radius: 6px; font-weight: 700; }
+  .header-change { font-size: 15px; margin-top: 4px; color: #4b7be4; background: #fff; display: inline-block; padding: 3px 10px; border-radius: 6px; font-weight: 700; }
   .section { background: #fff; margin: 10px 12px; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
   .section-title { font-size: 13px; color: #888; padding: 12px 14px 4px; font-weight: 600; }
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
@@ -27,9 +27,9 @@
   .card-value { font-size: 15px; font-weight: 700; }
   .week52-wrap { padding: 14px 14px 16px; }
   .week52-bar-bg { background: #e8e8e8; border-radius: 4px; height: 8px; margin: 8px 0; position: relative; }
-  .week52-bar-fill { background: #1a6fe8; height: 8px; border-radius: 4px; width: 98.3%; }
+  .week52-bar-fill { background: #1a6fe8; height: 8px; border-radius: 4px; width: 97.4%; }
   .week52-labels { display: flex; justify-content: space-between; font-size: 11px; color: #888; }
-  .week52-current { position: absolute; top: -20px; left: 98.3%; transform: translateX(-50%); font-size: 11px; color: #1a6fe8; font-weight: 700; white-space: nowrap; }
+  .week52-current { position: absolute; top: -20px; left: 97.4%; transform: translateX(-50%); font-size: 11px; color: #1a6fe8; font-weight: 700; white-space: nowrap; }
   .reason-card { display: flex; align-items: flex-start; gap: 10px; padding: 11px 14px; border-bottom: 1px solid #f0f0f0; }
   .reason-card:last-child { border-bottom: none; }
   .reason-num { background: #1a6fe8; color: #fff; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
@@ -41,8 +41,8 @@
 
 <div class="header">
   <div class="header-title">나스닥 종합</div>
-  <div class="header-price">27,599.89</div>
-  <div class="header-change">▲ 122.58 (+0.45%)</div>
+  <div class="header-price">27,538.69</div>
+  <div class="header-change">▼ 61.10 (-0.22%)</div>
 </div>
 
 <div class="section">
@@ -58,9 +58,15 @@
     </thead>
     <tbody>
         <tr>
+          <td>10.07</td>
+          <td><strong>27,538.69</strong></td>
+          <td style="color:#4b7be4">-61.10</td>
+          <td><span style="background:#4b7be4;color:#fff;padding:3px 10px;border-radius:5px;font-size:13px;font-weight:700">-0.22%</span></td>
+        </tr>
+        <tr>
           <td>10.06</td>
-          <td><strong>27,599.89</strong></td>
-          <td style="color:#e44b4b">+122.58</td>
+          <td><strong>27,599.79</strong></td>
+          <td style="color:#e44b4b">+122.48</td>
           <td><span style="background:#e44b4b;color:#fff;padding:3px 10px;border-radius:5px;font-size:13px;font-weight:700">+0.45%</span></td>
         </tr>
         <tr>
@@ -110,12 +116,6 @@
           <td><strong>26,939.37</strong></td>
           <td style="color:#e44b4b">+3.33</td>
           <td><span style="background:#e44b4b;color:#fff;padding:3px 10px;border-radius:5px;font-size:13px;font-weight:700">+0.01%</span></td>
-        </tr>
-        <tr>
-          <td>09.23</td>
-          <td><strong>26,936.04</strong></td>
-          <td style="color:#4b7be4">-308.24</td>
-          <td><span style="background:#4b7be4;color:#fff;padding:3px 10px;border-radius:5px;font-size:13px;font-weight:700">-1.13%</span></td>
         </tr></tbody>
   </table>
 </div>
@@ -123,16 +123,16 @@
 <div class="section">
   <div class="section-title">주요 지표</div>
   <div class="cards">
-    <div class="card"><div class="card-label">전일종가</div><div class="card-value">27,477.31</div></div>
-    <div class="card"><div class="card-label">시가</div><div class="card-value">27,641.17</div></div>
-    <div class="card"><div class="card-label">고가</div><div class="card-value" style="color:#e44b4b">27,722.75</div></div>
-    <div class="card"><div class="card-label">저가</div><div class="card-value" style="color:#4b7be4">27,592.56</div></div>
+    <div class="card"><div class="card-label">전일종가</div><div class="card-value">27,599.79</div></div>
+    <div class="card"><div class="card-label">시가</div><div class="card-value">27,430.54</div></div>
+    <div class="card"><div class="card-label">고가</div><div class="card-value" style="color:#e44b4b">27,547.20</div></div>
+    <div class="card"><div class="card-label">저가</div><div class="card-value" style="color:#4b7be4">27,341.31</div></div>
   </div>
   <div class="week52-wrap">
     <div class="card-label">52주 범위</div>
     <div class="week52-bar-bg">
       <div class="week52-bar-fill"></div>
-      <div class="week52-current">27,600</div>
+      <div class="week52-current">27,539</div>
     </div>
     <div class="week52-labels">
       <span>최저 20,690.25</span>
@@ -146,7 +146,7 @@
   
         <div class="reason-card">
           <span class="reason-num">1</span>
-          <span class="reason-text">나스닥 상승 — 주요 기술주 주가 변동</span>
+          <span class="reason-text">나스닥 하락 — 주요 기술주 주가 변동</span>
         </div>
         <div class="reason-card">
           <span class="reason-num">2</span>
@@ -158,7 +158,7 @@
         </div>
 </div>
 
-<div class="updated">업데이트: 2026.10.07 10:05 KST</div>
+<div class="updated">업데이트: 2026.10.08 10:25 KST</div>
 
 </body>
 </html>
